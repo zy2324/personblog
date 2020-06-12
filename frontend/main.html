@@ -20,7 +20,7 @@
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default probootstrap-navbar">
-  <div class="container">
+  <div class="container" id="myName">
 	<div class="navbar-header">
 	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
 		<span class="sr-only">Toggle navigation</span>
@@ -28,7 +28,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="" title="uiCookies:Frame">毅世界</a>
+	  <a class="navbar-brand" href="" title="uiCookies:Frame">{{ title }}</a>
 	</div>
 
 	<div id="navbar-collapse" class="navbar-collapse collapse">
@@ -36,7 +36,7 @@
 		<li class="active"><a href="#" data-nav-section="home">欢迎</a></li>
 		<li><a href="#" data-nav-section="features">毅周精选</a></li>
 		<li><a href="#" data-nav-section="pricing">往期精选</a></li>
-		<li><a href="#" data-nav-section="reviews"></a></li>
+		<li><a href="#" data-nav-section="reviews">我的世界</a></li>
 		<li><a href="#" data-nav-section="contact"></a></li>
 	  </ul>
 	</div>
@@ -113,7 +113,7 @@
 		  <ul class="probootstrap-list text-left mb50">
 			<li class=""></li>
 			
-			<li class=""><a href="{{ url_for('main.aboutLearn')}}">阅读全文</a></li>
+			<li class=""><a href="">阅读全文</a></li>
 		  </ul>
 		</div>
 	  </div>
@@ -160,8 +160,6 @@
 			<p><img src="" alt="" class="img-responsive"></p>
 		  </div>
 		</div>
-	  </div>
-	</div>
   </div>
 </section>
 
@@ -178,6 +176,16 @@
 
 <script src="static/js/scripts.min.js"></script>
 <script src="static/js/custom.js"></script>
+<!-- 引入vue．js -->
+<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#myName',
+		data: {
+			title: "毅世界"
+		}
+	})
+</script>
 
 
 </body>
