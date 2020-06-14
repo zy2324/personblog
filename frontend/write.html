@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>毅起看世界</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>毅起看世界</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
-<link rel="stylesheet" href="/static/css/styles-merged.css">
-<link rel="stylesheet" href="/static/css/style.min.css">
-<link rel="stylesheet" href="/static/fonts/icomoon/style.css">
+  <link rel="stylesheet" href="static/css/styles-merged.css">
+  <link rel="stylesheet" href="static/css/style.min.css">
+  <link rel="stylesheet" href="static/fonts/icomoon/style.css">
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 
-<!--[if lt IE 9]>
+  <!--[if lt IE 9]>
   <script src="js/vendor/html5shiv.min.js"></script>
   <script src="js/vendor/respond.min.js"></script>
 <![endif]-->
 </head>
+
 <body>
-<h1>写文章的地方</h1>
+  <div id="article">
+    <h1>个人录入文章的地方，若有发现者，请看看就好，界面简单极致，且发布文章需要输入验证码，因此你无法发布哟</h1>
+    <p>题目</p><input v-model="title" placeholder="">
 
-<footer class="probootstrap-footer">
-  <div class="container text-center">
-  	<div class="row">
-		<div class="col-md-12">Copyright &copy; 2019.备案号:<a href="http://www.beian.miit.gov.cn/">陕ICP备19015727号</a>
-	  </div>
-	</div>
+    <p>内容</p><textarea v-model="words" placeholder=""></textarea>
+
+    <p>验证码</p><input v-model="keyword" placeholder="">
+
+
+    <button v-on:click="addArticle">保存</button>
   </div>
-</footer>
+  <footer class="probootstrap-footer">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">Copyright &copy; 2019.备案号:<a href="http://www.beian.miit.gov.cn/">陕ICP备19015727号</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<script src="static/js/scripts.min.js"></script>
-<script src="/static/js/custom.js"></script>
+  <script src="static/js/scripts.min.js"></script>
+  <script src="static/js/custom.js"></script>
+  <script>
+    new Vue({
+      el: '#article',
+      data: {
+        title: '',
+        words: '',
+        keyword: ''
+      },
+      methods: {
+        addArticle: function () {
+          console.log(this.title)
+          console.log(this.words)
+          console.log(this.keyword)
+          //axios.post("http://127.0.0.1:6000/add/article", { title: this.title, words: this.words }).then(function (response) { console.log(response); }).catch(function (error) { console.log(error); });
+        }
+      }
+    })
+  </script>
 
 
 </body>
+
 </html>
