@@ -1,4 +1,4 @@
-import model
+package model
 
 import (
 	"database/sql"
@@ -14,30 +14,26 @@ type Article struct {
 
 var db *sql.DB
 
-func init()(success bool, db *sql.DB) {
-	var isopen bool
+func init() {
 	host := "127.0.0.1"
-	user := ""
+	user := "root"
 	pwd := ""
-	database := "articl"
+	database := "blog"
 
-	db, err = sql.Open("mysql", user+":"+pwd+"@tcp("+host+":3306)/"+database+"?charset=utf8")
-	if err != nil {
-		fmt.Println("open db failed")
-		return
-	} 
+	db, _  = sql.Open("mysql", user+":"+pwd+"@tcp("+host+":3306)/"+database+"?charset=utf8")
 
-	err = db.Ping()
+	err := db.Ping()
 	if err != nil {
 		fmt.Println("ping failed")
-		return
 	}
 
 	fmt.Println("connect mysql ok")
+	fmt.Println(db)
 }
 
-func addArticl(data Article) {
-	res, err := db.exec("INSERT INTO article(title, words) VALUES(?,?)", data.Title, data.Words)
+func addArticle(data Article) {
+	fmt.Println(db)
+	res, err := db.Exec("INSERT INTO article(title, words) VALUES(?,?)", data.Title, data.Words)
 	if err != nil {
 		fmt.Println("insert article failed")
 	}
