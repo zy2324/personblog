@@ -31,11 +31,31 @@ func init() {
 	fmt.Println(db)
 }
 
-func addArticle(data Article) {
+func insertArticle(data Article) {
 	fmt.Println(db)
 	res, err := db.Exec("INSERT INTO article(title, words) VALUES(?,?)", data.Title, data.Words)
 	if err != nil {
 		fmt.Println("insert article failed")
 	}
 	fmt.Println("result:", res)
+}
+
+func selectTitles() []string {
+	var res []string
+	rows, err := db.Query("SELECT title from article")
+	if err != nil {
+		fmt.Println("select titles failed")
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var t string
+		err := rows.Scan(&t)
+		if err != nil {
+			fmt.Println("scan title failed")
+		}
+		res = append(res, t)
+	}
+
+	return res
 }

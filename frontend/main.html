@@ -109,7 +109,7 @@
 	</div>
   </div>
 </section>
-<!-- END section -->
+<!-- 获取数据库最新增加的三篇文章-->
 <div class="tlinks"></div>
 <section class="probootstrap-section" data-section="pricing">
   <div class="container">
@@ -154,11 +154,17 @@
 </section>
 <!-- END section -->
 
+<!-- 获取所有文章题目，展示 -->
  <section class="probootstrap-section probootstrap-bg-light" data-section="catalog">
   <div class="container">
 	<div class="row text-center mb100">
 		<div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
-		  <h2 class="mb30 text-black probootstrap-heading">文章目录</h2>
+			<div id="titlesList">
+				<h2 class="mb30 text-black probootstrap-heading">文章目录</h2>
+				<li v-for="t in titles">
+					<a>{{ t.title }}</a>
+				</li>
+			</div>
 		</div>
 	  </div>
   </div>
@@ -180,10 +186,24 @@
 <!-- 引入vue．js -->
 <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
 <script type="text/javascript">
+
+	// 测试基本vue功能
 	var vm = new Vue({
 		el: '#myName',
 		data: {
 			title: "毅世界"
+		}
+	}),
+
+	// 获取所有文章题目列表
+	var tl = new Vue({
+		el: '#titlesList',
+		data: {
+			titles:null
+		},
+
+		mounted() {
+			axios.get("http://www.draknesslion.top/blog/get/titles").then(response=>(this.titles=response.data.titles)).catch(function(error){console.error();});
 		}
 	})
 </script>
