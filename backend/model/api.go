@@ -21,7 +21,7 @@ func Addapi(w http.ResponseWriter, r *http.Request) {
 
         fmt.Println(article, db)
 
-        if article.Keyword == "yiqikanshijie"{
+        if article.Keyword == ""{
                 addArticle(article)
                 w.Write([]byte("add ok"))
         } else {
