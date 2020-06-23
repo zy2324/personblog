@@ -32,7 +32,7 @@ func AddArticle(w http.ResponseWriter, r *http.Request) {
 
 func GetTitles(w http.ResponseWriter, r *http.Request) {
         titles := selectTitles()
-        datas := make(map(string)[]string)
+        datas := make(map[string]([]string))
 
         datas["titles"] = titles
         js, err := json.Marshal(datas)

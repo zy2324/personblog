@@ -162,7 +162,7 @@
 			<div id="titlesList">
 				<h2 class="mb30 text-black probootstrap-heading">文章目录</h2>
 				<li v-for="t in titles">
-					<a>{{ t.title }}</a>
+					<a>{{ t }}</a>
 				</li>
 			</div>
 		</div>
@@ -185,6 +185,7 @@
 <script src="static/js/custom.js"></script>
 <!-- 引入vue．js -->
 <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 <script type="text/javascript">
 
 	// 测试基本vue功能
@@ -193,7 +194,7 @@
 		data: {
 			title: "毅世界"
 		}
-	}),
+	});
 
 	// 获取所有文章题目列表
 	var tl = new Vue({
