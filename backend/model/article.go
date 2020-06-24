@@ -53,9 +53,20 @@ func selectTitles() []string {
 		err := rows.Scan(&t)
 		if err != nil {
 			fmt.Println("scan title failed")
+			return
 		}
 		res = append(res, t)
 	}
 
 	return res
+}
+
+func getLastArticle() (string, string) {
+	var title, words string
+	err := db.QueryRow("SELECT title, words from article order by id DESC limit 1").Scan(&title, &words)
+	if err != nil {
+		fmt.Println("select or scan last word failed")
+		return
+	}
+	return title, words
 }

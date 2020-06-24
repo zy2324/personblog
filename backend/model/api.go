@@ -42,3 +42,18 @@ func GetTitles(w http.ResponseWriter, r *http.Request) {
         w.Header().Set("Content-Type", "application/json")
         w.Write(js)
  }
+
+ func GetYizhou(w http.ResponseWriter, r *http.Request) {
+        title, words := getLastArticle()
+        datas := make(map[string]string)
+
+        datas["yizhoutitle"] = title
+        datas["yizhouwords"] = words
+
+        js, err := json.Marshal(datas)
+        if err != nil {
+                return
+        }
+        w.Header().Set("Content-Type", "application/json")
+        w.Write(js)
+ }
