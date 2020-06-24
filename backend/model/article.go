@@ -17,7 +17,7 @@ var db *sql.DB
 func init() {
 	host := "127.0.0.1"
 	user := "root"
-	pwd := ""
+	pwd := "thisislifeZy007~"
 	database := "blog"
 
 	db, _  = sql.Open("mysql", user+":"+pwd+"@tcp("+host+":3306)/"+database+"?charset=utf8")
@@ -53,7 +53,7 @@ func selectTitles() []string {
 		err := rows.Scan(&t)
 		if err != nil {
 			fmt.Println("scan title failed")
-			return
+			return nil
 		}
 		res = append(res, t)
 	}
@@ -66,7 +66,7 @@ func getLastArticle() (string, string) {
 	err := db.QueryRow("SELECT title, words from article order by id DESC limit 1").Scan(&title, &words)
 	if err != nil {
 		fmt.Println("select or scan last word failed")
-		return
+		return "", ""
 	}
 	return title, words
 }
