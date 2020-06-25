@@ -91,9 +91,10 @@
 					<div id="titlesList">
 						<h2 class="mb30 text-black probootstrap-heading">文章目录</h2>
 						<li v-for="t in titles">
-							<router-link to="/detail">{{ t }}</router-link>
+							<p @click="detail">{{ t }}</p>
 						</li>
 					</div>
+					
 				</div>
 			</div>
 		</div>
