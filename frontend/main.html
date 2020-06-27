@@ -90,9 +90,12 @@
 				<div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
 					<div id="titlesList">
 						<h2 class="mb30 text-black probootstrap-heading">文章目录</h2>
-						<li v-for="t in titles">
-							<p @click="detail">{{ t }}</p>
+						<!--<li v-for="t in titles">
+							<router-link to="/detail">{{ t }}</router-link>
 						</li>
+						<router-view></router-view>-->
+						<li><a href="aboutLearn.html">关于学习</a></li>
+						<li><a href="highSchool.html">高中那些事</a></li>
 					</div>
 					
 				</div>
@@ -120,6 +123,14 @@
 	<script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
 	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 	<script type="text/javascript">
+		const Detail = { templtate: '<p>文章内容</p>'}
+		const routes = [
+			{path:'/detail', component:Detail}
+		]
+
+		const router = new VueRouter({
+		  routes // （缩写）相当于 routes: routes
+		})
 
 		// 测试基本vue功能
 		var vm = new Vue({
@@ -131,6 +142,7 @@
 
 		// 获取所有文章题目列表
 		var tl = new Vue({
+			router,
 			el: '#titlesList',
 			data: {
 				titles: null
