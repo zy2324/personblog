@@ -12,6 +12,12 @@ type Article struct {
 	Keyword string `json:keyword`
 }
 
+type Visittop struct {
+	Ip	string
+	Area	string
+	Counts	int64
+}
+
 var db *sql.DB
 
 func init() {
@@ -69,4 +75,27 @@ func getLastArticle() (string, string) {
 		return "", ""
 	}
 	return title, words
+}
+
+func getVisit() ([]Visittop, error) {
+	var res []Visittop
+	rows, err := db.Query("select ip,area,counts from visit order by counts DESC limit 10")
+	if err != nil {
+		fmt.Println("select visit failed")
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var v Visittop
+		err = rows.Scan(&v)
+		if err != nil {
+			fmt.Println("scan visit strcut failed")
+			return nil, err
+		}
+
+		res = append(res, v)
+	}
+
+	return res, nil
 }

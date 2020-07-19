@@ -110,14 +110,12 @@
 		<div class="container">
 			<div class="row text-center mb100">
 				<div class="col-md-8 col-md-offset-2 probootstrap-section-heading">
-					<div id="titlesList">
+					<div id="visitip" v-for="v in ips">
 						<h2 class="mb30 text-black probootstrap-heading">访问top10</h2>
 						<table border="1" align="center">
 						<tr><td>访问ip</td><td>所属地址</td><td>访问次数</td></tr>
-						<tr><td>10.1.1.1</td><td>陕西省商洛市</td><td>10</td></tr>
+						<tr><td>{{ v.ip }}</td><td>{{ v.area }}</td><td>{{ v.counts }}</td></tr>
 						</table>
-						<tr></tr>
-						<li></li>
 					</div>
 					
 				</div>
@@ -187,6 +185,17 @@
 
 			mounted() {
 				axios.get("http://www.draknesslion.top/blog/get/yizhou").then(response => (this.yizhoutitle = response.data.yizhoutitle, this.yizhouwords = response.data.yizhouwords)).catch(function (error) { console.error(); });
+			}
+		});
+
+		var vs = new Vue({
+			el: '#visitip',
+			data: {
+				ips: null
+			},
+
+			mounted() {
+				axios.get("http://www.draknesslion.top/blog/get/visit").then(response => (this.ips = response.data)).catch(function (error) { console.error(); });
 			}
 		})
 

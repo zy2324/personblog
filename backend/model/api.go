@@ -57,3 +57,19 @@ func GetTitles(w http.ResponseWriter, r *http.Request) {
         w.Header().Set("Content-Type", "application/json")
         w.Write(js)
  }
+
+ func GetVisit(w http.ResponseWriter, r *http.Request) {
+         res, err := getVisit()
+         if err != nil {
+                w.Write([]byte("get visit failed"))
+                return
+         }
+
+         fs, err := json.Marshal(res)
+         if err != nil {
+                 return 
+         }
+
+         w.Header().Set("Content-Type", "application/json")
+         w.Write(js)
+ }
